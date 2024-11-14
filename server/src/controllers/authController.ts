@@ -6,13 +6,14 @@ import {createUser, loginUser} from '../service/authServise'
 const router = Router()
 router.post('/register', async(req:Request,res:Response):Promise<void> =>{
     try {
-        const {username,password}:IUser = req.body
-        const newUser = await createUser({username,password})
-        console.log(newUser);
+        const user:IUser = req.body
+        console.log(user);
         
+        const newUser = await createUser(user)
+        console.log(newUser);
         res.json(newUser)
     } catch (error:any) {
-        console.error('error.messege')
+        console.error(error.messege)
     }
 })
 router.post('/login', async(req:Request,res:Response):Promise<void> =>{

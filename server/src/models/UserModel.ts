@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 export interface IUser extends Document {
     username:string,
     password : string,
-    // org : string,
+    org : string,
     comparePassword(userPassword:string): Promise<boolean>
 }
 
@@ -18,9 +18,9 @@ const UserSchema = new Schema({
         type:String,
         required : true,
     },
-    // org:{
-    //     type:String
-    // }
+    org:{
+        type:String
+    }
 
 }, {timestamps : true})
 
