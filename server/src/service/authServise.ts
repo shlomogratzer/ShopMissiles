@@ -13,5 +13,5 @@ export const loginUser = async (loginuser: IUser)=>{
     if(!user || !(await user.comparePassword(password))){
         return 'username or password is not correct'
     }
-    return 'login secssesfully'
+    return {name:user.username , org:user.org}
 }

@@ -22,7 +22,9 @@ const router:Router = express.Router()
 
 router.post('/mydata', async(req:Request,res:Response):Promise<void> =>{
     try {
+        
         const user:AuthUser = req.body
+        console.log('mydata');
         const org = await getOrgByName(user.org)
 
         res.json(org)

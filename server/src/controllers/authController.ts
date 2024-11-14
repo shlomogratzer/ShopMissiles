@@ -7,7 +7,7 @@ const router = Router()
 router.post('/register', async(req:Request,res:Response):Promise<void> =>{
     try {
         const user:IUser = req.body
-        console.log(user);
+
         
         const newUser = await createUser(user)
         console.log(newUser);
@@ -19,7 +19,9 @@ router.post('/register', async(req:Request,res:Response):Promise<void> =>{
 router.post('/login', async(req:Request,res:Response):Promise<void> =>{
     try {
         const user:IUser = req.body
+        console.log(user);
         const login = await loginUser(user)
+        
         res.json(login)
     } catch (error:any) {
         console.error(error.messege)
