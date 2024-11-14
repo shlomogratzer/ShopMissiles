@@ -1,6 +1,5 @@
 
 import './App.css'
-import Login from './components/Login'
 import Router from './routers/router'
 import Layout from './layout/Layout'
 

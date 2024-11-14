@@ -8,21 +8,18 @@ interface Props {
     children: ReactNode;
 }
 interface UserProps{
-    loginUser:ILoginUser|{}
+    loginUser:ILoginUser
     setLoginUser:React.Dispatch<React.SetStateAction<ILoginUser>>
   }
-export const OrgContext = createContext<UserProps>({
-    loginUser:{},
-    setLoginUser:()=>{}
-})
+export const UserLoginContext = createContext<UserProps | null>(null)
 
-const OrgProvider = ({children}:Props) => {
-    const [loginUser,setLoginUser] =useState<string>('')
+const UserProvider = ({children}:Props) => {
+    const [loginUser,setLoginUser] = useState<ILoginUser| null>(null)
   return (
-    <OrgContext.Provider value={{loginUser,setLoginUser}}>
+    <UserLoginContext.Provider value={{loginUser,setLoginUser}}>
         {children}
-    </OrgContext.Provider>
+    </UserLoginContext.Provider>
   )
 }
 
-export default OrgProvider
+export default UserProvider

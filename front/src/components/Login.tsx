@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
+import { UserLoginContext } from "../context/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const userContext = useContext(UserLoginContext)
+  const navigate = useNavigate()
   const [user, setUser] = useState(null); // State to store the response
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -15,14 +19,10 @@ const Login = () => {
         password: password,
       });
 
-      console.log(response.data);
-      console.log(username);
-      console.log(password);
-      
-      
-      
       setUser(response.data); // Store user data to display
       setError(null); // Clear any previous errors
+      userContext?.setLoginUser({org:response.data.org,name:response.data.username,login:true})
+      navigate('/shop')
     } catch (error) {
       setError("Error making POST request."); // Set error message
       console.error("Error making POST request:", error);
